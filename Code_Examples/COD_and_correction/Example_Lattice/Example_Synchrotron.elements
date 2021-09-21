@@ -1,0 +1,525 @@
+! Main dipole
+!-----------------------------
+b1 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_0 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_1 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_2 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_3 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_4 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_5 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_6 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_7 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_8 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_9 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_10 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+b1_11 : sbend, l:=blen, angle:=bangle, e1:=b_edge, e2:=b_edge, k1:=bkval;
+
+! Quadrupoles
+!-----------------------------
+qf1 : quadrupole, l=(0.5 + 5.167124e-02), k1:=qf1kvar;
+qf1_0 : quadrupole, l=0.55167124, k1:=qf1kvar;
+qf1_1 : quadrupole, l=0.55167124, k1:=qf1kvar;
+qf1_2 : quadrupole, l=0.55167124, k1:=qf1kvar;
+qf1_3 : quadrupole, l=0.55167124, k1:=qf1kvar;
+qf1_4 : quadrupole, l=0.55167124, k1:=qf1kvar;
+qf1_5 : quadrupole, l=0.55167124, k1:=qf1kvar;
+
+qf2 : quadrupole, l=(0.5 + 5.167124e-02), k1:=qf2kvar;
+qf2_0 : quadrupole, l=0.55167124, k1:=qf2kvar;
+qf2_1 : quadrupole, l=0.55167124, k1:=qf2kvar;
+qf2_2 : quadrupole, l=0.55167124, k1:=qf2kvar;
+qf2_3 : quadrupole, l=0.55167124, k1:=qf2kvar;
+qf2_4 : quadrupole, l=0.55167124, k1:=qf2kvar;
+qf2_5 : quadrupole, l=0.55167124, k1:=qf2kvar;
+
+qf4 : quadrupole, l=0.75, k1:=qf4kvar;
+qf4_0 : quadrupole, l=0.75, k1:=qf4kvar;
+qf4_1 : quadrupole, l=0.75, k1:=qf4kvar;
+qf4_2 : quadrupole, l=0.75, k1:=qf4kvar;
+qf4_3 : quadrupole, l=0.75, k1:=qf4kvar;
+qf4_4 : quadrupole, l=0.75, k1:=qf4kvar;
+qf4_5 : quadrupole, l=0.75, k1:=qf4kvar;
+
+qd1 : quadrupole, l=0.5, k1:=qd1kvar;
+qd1_0 : quadrupole, l=0.5, k1:=qd1kvar;
+qd1_1 : quadrupole, l=0.5, k1:=qd1kvar;
+qd1_2 : quadrupole, l=0.5, k1:=qd1kvar;
+qd1_3 : quadrupole, l=0.5, k1:=qd1kvar;
+qd1_4 : quadrupole, l=0.5, k1:=qd1kvar;
+qd1_5 : quadrupole, l=0.5, k1:=qd1kvar;
+
+qd2 : quadrupole, l=(0.5 + 2.439496e-03), k1:=qd2kvar;
+qd2_0 : quadrupole, l=0.502439496, k1:=qd2kvar;
+qd2_1 : quadrupole, l=0.502439496, k1:=qd2kvar;
+qd2_2 : quadrupole, l=0.502439496, k1:=qd2kvar;
+qd2_3 : quadrupole, l=0.502439496, k1:=qd2kvar;
+qd2_4 : quadrupole, l=0.502439496, k1:=qd2kvar;
+qd2_5 : quadrupole, l=0.502439496, k1:=qd2kvar;
+
+qd3 : quadrupole, l=(0.5 + 2.439496e-03), k1:=qd3kvar;
+qd3_0 : quadrupole, l=0.502439496, k1:=qd3kvar;
+qd3_1 : quadrupole, l=0.502439496, k1:=qd3kvar;
+qd3_2 : quadrupole, l=0.502439496, k1:=qd3kvar;
+qd3_3 : quadrupole, l=0.502439496, k1:=qd3kvar;
+qd3_4 : quadrupole, l=0.502439496, k1:=qd3kvar;
+qd3_5 : quadrupole, l=0.502439496, k1:=qd3kvar;
+
+qd4 : quadrupole, l=0.75, k1:=qd4kvar;
+qd4_0 : quadrupole, l=0.75, k1:=qd4kvar;
+qd4_1 : quadrupole, l=0.75, k1:=qd4kvar;
+qd4_2 : quadrupole, l=0.75, k1:=qd4kvar;
+qd4_3 : quadrupole, l=0.75, k1:=qd4kvar;
+qd4_4 : quadrupole, l=0.75, k1:=qd4kvar;
+qd4_5 : quadrupole, l=0.75, k1:=qd4kvar;
+
+qtf  : quadrupole, l=0.2, k1:=qtfkvar;
+qtf_0  : quadrupole, l=0.2, k1:=qtfkvar;
+qtf_1  : quadrupole, l=0.2, k1:=qtfkvar;
+qtf_2  : quadrupole, l=0.2, k1:=qtfkvar;
+qtf_3  : quadrupole, l=0.2, k1:=qtfkvar;
+qtf_4  : quadrupole, l=0.2, k1:=qtfkvar;
+qtf_5  : quadrupole, l=0.2, k1:=qtfkvar;
+
+qtd  : quadrupole, l=0.2, k1:=qtdkvar;
+qtd_0  : quadrupole, l=0.2, k1:=qtdkvar;
+qtd_1  : quadrupole, l=0.2, k1:=qtdkvar;
+qtd_2  : quadrupole, l=0.2, k1:=qtdkvar;
+qtd_3  : quadrupole, l=0.2, k1:=qtdkvar;
+qtd_4  : quadrupole, l=0.2, k1:=qtdkvar;
+qtd_5  : quadrupole, l=0.2, k1:=qtdkvar;
+
+! Sextupoles
+!-----------------------------              
+s1x  : sextupole, l=0.2, k2:=s1xk2var;
+s1x_0 : sextupole, l=0.2, k2:=s1xk2var;
+s1x_1 : sextupole, l=0.2, k2:=s1xk2var;
+s1x_2 : sextupole, l=0.2, k2:=s1xk2var;
+
+!s2x  : sextupole, l=0.2, k2:=s2xk2var;
+
+s1y  : sextupole, l=0.2, k2:=s1yk2var;
+s1y_0  : sextupole, l=0.2, k2:=s1yk2var;
+s1y_1  : sextupole, l=0.2, k2:=s1yk2var;
+s1y_2  : sextupole, l=0.2, k2:=s1yk2var;
+
+s2y  : sextupole, l=0.2, k2:=s2yk2var;
+s2y_0  : sextupole, l=0.2, k2:=s2yk2var;
+s2y_1  : sextupole, l=0.2, k2:=s2yk2var;
+s2y_2  : sextupole, l=0.2, k2:=s2yk2var;
+
+s3y  : sextupole, l=0.2, k2:=s3yk2var;
+s3y_0  : sextupole, l=0.2, k2:=s3yk2var;
+s3y_1  : sextupole, l=0.2, k2:=s3yk2var;
+s3y_2  : sextupole, l=0.2, k2:=s3yk2var;
+
+! Drifts
+!-----------------------------  
+a0  : drift, l=0.561757;
+a0_0  : drift, l=0.561757;
+a0_1  : drift, l=0.561757;
+a0_2  : drift, l=0.561757;
+a0_3  : drift, l=0.561757;
+a0_4  : drift, l=0.561757;
+a0_5  : drift, l=0.561757;
+a0_6  : drift, l=0.561757;
+a0_7  : drift, l=0.561757;
+a0_8  : drift, l=0.561757;
+a0_9  : drift, l=0.561757;
+a0_10  : drift, l=0.561757;
+a0_11  : drift, l=0.561757;
+a0_12  : drift, l=0.561757;
+a0_13  : drift, l=0.561757;
+a0_14  : drift, l=0.561757;
+a0_15  : drift, l=0.561757;
+a0_16  : drift, l=0.561757;
+a0_17  : drift, l=0.561757;
+
+a0a  : drift, l=(0.561757/2)-0.1;
+a0a_0  : drift, l=(0.561757/2)-0.1;
+a0a_1  : drift, l=(0.561757/2)-0.1;
+a0a_2  : drift, l=(0.561757/2)-0.1;
+a0a_3  : drift, l=(0.561757/2)-0.1;
+a0a_4  : drift, l=(0.561757/2)-0.1;
+a0a_5  : drift, l=(0.561757/2)-0.1;
+a0a_6  : drift, l=(0.561757/2)-0.1;
+a0a_7  : drift, l=(0.561757/2)-0.1;
+a0a_8  : drift, l=(0.561757/2)-0.1;
+a0a_9  : drift, l=(0.561757/2)-0.1;
+a0a_10  : drift, l=(0.561757/2)-0.1;
+a0a_11  : drift, l=(0.561757/2)-0.1;
+
+as1a : drift, l=0.5;
+as1a_0 : drift, l=0.5;
+as1a_1 : drift, l=0.5;
+as1a_2 : drift, l=0.5;
+as1a_3 : drift, l=0.5;
+as1a_4 : drift, l=0.5;
+as1a_5 : drift, l=0.5;
+as1a_6 : drift, l=0.5;
+as1a_7 : drift, l=0.5;
+as1a_8 : drift, l=0.5;
+as1a_9 : drift, l=0.5;
+as1a_10 : drift, l=0.5;
+as1a_11 : drift, l=0.5;
+as1a_12 : drift, l=0.5;
+as1a_13 : drift, l=0.5;
+as1a_14 : drift, l=0.5;
+as1a_15 : drift, l=0.5;
+as1a_16 : drift, l=0.5;
+as1a_17 : drift, l=0.5;
+as1a_18 : drift, l=0.5;
+as1a_19 : drift, l=0.5;
+as1a_20 : drift, l=0.5;
+as1a_21 : drift, l=0.5;
+as1a_22 : drift, l=0.5;
+as1a_23 : drift, l=0.5;
+as1a_24 : drift, l=0.5;
+as1a_25 : drift, l=0.5;
+as1a_26 : drift, l=0.5;
+as1a_27 : drift, l=0.5;
+as1a_28 : drift, l=0.5;
+as1a_29 : drift, l=0.5;
+as1a_30 : drift, l=0.5;
+as1a_31 : drift, l=0.5;
+as1a_32 : drift, l=0.5;
+as1a_33 : drift, l=0.5;
+as1a_34 : drift, l=0.5;
+as1a_35 : drift, l=0.5;
+as1a_36 : drift, l=0.5;
+as1a_37 : drift, l=0.5;
+as1a_38 : drift, l=0.5;
+as1a_39 : drift, l=0.5;
+as1a_40 : drift, l=0.5;
+as1a_41 : drift, l=0.5;
+as1a_42 : drift, l=0.5;
+as1a_43 : drift, l=0.5;
+as1a_44 : drift, l=0.5;
+as1a_45 : drift, l=0.5;
+as1a_46 : drift, l=0.5;
+as1a_47 : drift, l=0.5;
+as1a_48 : drift, l=0.5;
+as1a_49 : drift, l=0.5;
+as1a_50 : drift, l=0.5;
+as1a_51 : drift, l=0.5;
+as1a_52 : drift, l=0.5;
+as1a_53 : drift, l=0.5;
+as1a_54 : drift, l=0.5;
+as1a_55 : drift, l=0.5;
+as1a_56 : drift, l=0.5;
+as1a_57 : drift, l=0.5;
+as1a_58 : drift, l=0.5;
+as1a_59 : drift, l=0.5;
+as1a_60 : drift, l=0.5;
+as1a_61 : drift, l=0.5;
+as1a_62 : drift, l=0.5;
+as1a_63 : drift, l=0.5;
+as1a_64 : drift, l=0.5;
+as1a_65 : drift, l=0.5;
+as1a_66 : drift, l=0.5;
+as1a_67 : drift, l=0.5;
+as1a_68 : drift, l=0.5;
+as1a_69 : drift, l=0.5;
+as1a_70 : drift, l=0.5;
+as1a_71 : drift, l=0.5;
+as1a_72 : drift, l=0.5;
+as1a_73 : drift, l=0.5;
+as1a_74 : drift, l=0.5;
+as1a_75 : drift, l=0.5;
+as1a_76 : drift, l=0.5;
+as1a_77 : drift, l=0.5;
+
+
+as1b : drift, l=0.05871;
+as1b_0 : drift, l=0.05871;
+as1b_1 : drift, l=0.05871;
+as1b_2 : drift, l=0.05871;
+as1b_3 : drift, l=0.05871;
+as1b_4 : drift, l=0.05871;
+as1b_5 : drift, l=0.05871;
+as1b_6 : drift, l=0.05871;
+as1b_7 : drift, l=0.05871;
+as1b_8 : drift, l=0.05871;
+as1b_9 : drift, l=0.05871;
+as1b_10 : drift, l=0.05871;
+as1b_11 : drift, l=0.05871;
+
+as1c : drift, l=0.15;
+as1c_0 : drift, l=0.15;
+as1c_1 : drift, l=0.15;
+as1c_2 : drift, l=0.15;
+as1c_3 : drift, l=0.15;
+as1c_4 : drift, l=0.15;
+as1c_5 : drift, l=0.15;
+as1c_6 : drift, l=0.15;
+as1c_7 : drift, l=0.15;
+as1c_8 : drift, l=0.15;
+as1c_9 : drift, l=0.15;
+as1c_10 : drift, l=0.15;
+as1c_11 : drift, l=0.15;
+
+!a2a  : drift, l=0.5;
+
+a2b  : drift, l=0.244688;
+a2b_0 : drift, l=0.244688;
+a2b_1 : drift, l=0.244688;
+a2b_2 : drift, l=0.244688;
+a2b_3 : drift, l=0.244688;
+a2b_4 : drift, l=0.244688;
+a2b_5 : drift, l=0.244688;
+
+a2c  : drift, l=0.15;
+a2c_0 : drift, l=0.15;
+a2c_1 : drift, l=0.15;
+a2c_2 : drift, l=0.15;
+a2c_3 : drift, l=0.15;
+a2c_4 : drift, l=0.15;
+a2c_5 : drift, l=0.15;
+a2c_6 : drift, l=0.15;
+a2c_7 : drift, l=0.15;
+a2c_8 : drift, l=0.15;
+a2c_9 : drift, l=0.15;
+a2c_10 : drift, l=0.15;
+a2c_11 : drift, l=0.15;
+
+a4a  : drift, l=0.5;
+a4a_0 : drift, l=0.5;
+a4a_1 : drift, l=0.5;
+a4a_2 : drift, l=0.5;
+a4a_3 : drift, l=0.5;
+a4a_4 : drift, l=0.5;
+a4a_5 : drift, l=0.5;
+a4a_6 : drift, l=0.5;
+a4a_7 : drift, l=0.5;
+a4a_8 : drift, l=0.5;
+a4a_9 : drift, l=0.5;
+a4a_10 : drift, l=0.5;
+a4a_11 : drift, l=0.5;
+a4a_12 : drift, l=0.5;
+a4a_13 : drift, l=0.5;
+a4a_14 : drift, l=0.5;
+a4a_15 : drift, l=0.5;
+a4a_16 : drift, l=0.5;
+a4a_17 : drift, l=0.5;
+a4a_18 : drift, l=0.5;
+a4a_19 : drift, l=0.5;
+a4a_20 : drift, l=0.5;
+a4a_21 : drift, l=0.5;
+a4a_22 : drift, l=0.5;
+a4a_23 : drift, l=0.5;
+a4a_24 : drift, l=0.5;
+a4a_25 : drift, l=0.5;
+a4a_26 : drift, l=0.5;
+a4a_27 : drift, l=0.5;
+a4a_28 : drift, l=0.5;
+a4a_29 : drift, l=0.5;
+a4a_30 : drift, l=0.5;
+a4a_31 : drift, l=0.5;
+a4a_32 : drift, l=0.5;
+a4a_33 : drift, l=0.5;
+a4a_34 : drift, l=0.5;
+a4a_35 : drift, l=0.5;
+a4a_36 : drift, l=0.5;
+a4a_37 : drift, l=0.5;
+a4a_38 : drift, l=0.5;
+a4a_39 : drift, l=0.5;
+a4a_40 : drift, l=0.5;
+a4a_41 : drift, l=0.5;
+
+a4b  : drift, l=0.27516;
+a4b_0 : drift, l=0.27516;
+a4b_1 : drift, l=0.27516;
+a4b_2 : drift, l=0.27516;
+a4b_3 : drift, l=0.27516;
+a4b_4 : drift, l=0.27516;
+a4b_5 : drift, l=0.27516;
+
+a4c  : drift, l=0.15;
+a4c_0 : drift, l=0.15;
+a4c_1 : drift, l=0.15;
+a4c_2 : drift, l=0.15;
+a4c_3 : drift, l=0.15;
+a4c_4 : drift, l=0.15;
+a4c_5 : drift, l=0.15;
+a4c_6 : drift, l=0.15;
+a4c_7 : drift, l=0.15;
+a4c_8 : drift, l=0.15;
+a4c_9 : drift, l=0.15;
+a4c_10 : drift, l=0.15;
+a4c_11 : drift, l=0.15;
+
+a5a  : drift, l=0.5;
+a5a_0 : drift, l=0.5;
+a5a_1 : drift, l=0.5;
+a5a_2 : drift, l=0.5;
+a5a_3 : drift, l=0.5;
+a5a_4 : drift, l=0.5;
+a5a_5 : drift, l=0.5;
+a5a_6 : drift, l=0.5;
+a5a_7 : drift, l=0.5;
+a5a_8 : drift, l=0.5;
+a5a_9 : drift, l=0.5;
+a5a_10 : drift, l=0.5;
+a5a_11 : drift, l=0.5;
+a5a_12 : drift, l=0.5;
+a5a_13 : drift, l=0.5;
+a5a_14 : drift, l=0.5;
+a5a_15 : drift, l=0.5;
+a5a_16 : drift, l=0.5;
+a5a_17 : drift, l=0.5;
+a5a_18 : drift, l=0.5;
+a5a_19 : drift, l=0.5;
+a5a_20 : drift, l=0.5;
+a5a_21 : drift, l=0.5;
+a5a_22 : drift, l=0.5;
+a5a_23 : drift, l=0.5;
+
+a5b  : drift, l=0.25015;
+a5b_0 : drift, l=0.25015;
+a5b_1 : drift, l=0.25015;
+a5b_2 : drift, l=0.25015;
+a5b_3 : drift, l=0.25015;
+a5b_4 : drift, l=0.25015;
+a5b_5 : drift, l=0.25015;
+
+! Markers
+!-----------------------------  
+inj  : marker;
+inj_0  : marker;
+inj_1  : marker;
+inj_2  : marker;
+
+sep  : marker;
+
+m1  : marker;
+m1_0  : marker;
+m1_1  : marker;
+m1_2  : marker;
+m3  : marker;
+m3_0  : marker;
+m3_1  : marker;
+m3_2  : marker;
+
+minj1 : marker;
+minj1_0 : marker;
+minj1_1 : marker;
+minj1_2 : marker;
+minj2 : marker;
+minj2_0 : marker;
+minj2_1 : marker;
+minj2_2 : marker;
+
+! Kickers
+!-----------------------------  
+id1  : hkicker, kick:=idip1;
+id2  : hkicker, kick:=idip2;
+id3  : hkicker, kick:=idip2;
+id4  : hkicker, kick:=idip1;
+
+h1  : hkicker, kick:=hkick1;
+h2  : hkicker, kick:=hkick2;
+h3  : hkicker, kick:=hkick2;
+h4  : hkicker, kick:=hkick1;
+                    
+v1  : vkicker, kick:=vkick1;
+v2  : vkicker, kick:=vkick2;
+v3  : vkicker, kick:=vkick2;
+v4  : vkicker, kick:=vkick1;
+
+hext1 : hkicker, kick:=hextkick1;
+hext2 : hkicker, kick:=hextkick2;
+hext3 : hkicker, kick:=hextkick3;
+hext4 : hkicker, kick:=hextkick4;
+hext5 : hkicker, kick:=hextkick5;
+hext6 : hkicker, kick:=hextkick6;
+hext7 : hkicker, kick:=hextkick7;
+
+vext1 : vkicker, kick:=vextkick1;
+vext2 : vkicker, kick:=vextkick2;
+vext3 : vkicker, kick:=vextkick3;
+vext4 : vkicker, kick:=vextkick4;
+
+! sp arc correctors
+hc101 : hkicker, kick:=hc101;
+hm101 : monitor; 
+hc102 : hkicker, kick:=hc102;
+hm102 : monitor; 
+hc103 : hkicker, kick:=hc103;
+hm103 : monitor; 
+hc104 : hkicker, kick:=hc104;
+hm104 : monitor; 
+hc105 : hkicker, kick:=hc105;
+hm105 : monitor; 
+hc106 : hkicker, kick:=hc106;
+hm106 : monitor; 
+
+! sp arc correctors
+hc201 : hkicker, kick:=hc201;
+hm201 : monitor; 
+hc202 : hkicker, kick:=hc202;
+hm202 : monitor; 
+hc203 : hkicker, kick:=hc203;
+hm203 : monitor; 
+hc204 : hkicker, kick:=hc204;
+hm204 : monitor; 
+hc205 : hkicker, kick:=hc205;
+hm205 : monitor; 
+hc206 : hkicker, kick:=hc206;
+hm206 : monitor; 
+
+hc301 : hkicker, kick:=hc301;
+hm301 : monitor; 
+hc302 : hkicker, kick:=hc302;
+hm302 : monitor; 
+hc303 : hkicker, kick:=hc303;
+hm303 : monitor; 
+hc304 : hkicker, kick:=hc304;
+hm304 : monitor; 
+hc305 : hkicker, kick:=hc305;
+hm305 : monitor; 
+hc306 : hkicker, kick:=hc306;
+hm306 : monitor; 
+
+vc101 : vkicker, kick:=vc101;
+vm101 : monitor; 
+vc102 : vkicker, kick:=vc102;
+vm102 : monitor; 
+vc103 : vkicker, kick:=vc103;
+vm103 : monitor; 
+vc104 : vkicker, kick:=vc104;
+vm104 : monitor; 
+vc105 : vkicker, kick:=vc105;
+vm105 : monitor; 
+vc106 : vkicker, kick:=vc106;
+vm106 : monitor; 
+vc107 : vkicker, kick:=vc107;
+vm107 : monitor; 
+
+vc201 : vkicker, kick:=vc201;
+vm201 : monitor; 
+vc202 : vkicker, kick:=vc202;
+vm202 : monitor; 
+vc203 : vkicker, kick:=vc203;
+vm203 : monitor; 
+vc204 : vkicker, kick:=vc204;
+vm204 : monitor; 
+vc205 : vkicker, kick:=vc205;
+vm205 : monitor; 
+vc206 : vkicker, kick:=vc206;
+vm206 : monitor; 
+vc207 : vkicker, kick:=vc207;
+vm207 : monitor; 
+
+vc301 : vkicker, kick:=vc301;
+vm301 : monitor; 
+vc302 : vkicker, kick:=vc302;
+vm302 : monitor; 
+vc303 : vkicker, kick:=vc303;
+vm303 : monitor; 
+vc304 : vkicker, kick:=vc304;
+vm304 : monitor; 
+vc305 : vkicker, kick:=vc305;
+vm305 : monitor; 
+vc306 : vkicker, kick:=vc306;
+vm306 : monitor; 
+vc307 : vkicker, kick:=vc307;
+vm307 : monitor; 

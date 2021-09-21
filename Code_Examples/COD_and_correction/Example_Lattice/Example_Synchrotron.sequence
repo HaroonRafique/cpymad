@@ -1,0 +1,81 @@
+
+! Drift lines
+!-----------------------------
+as1 : line=(7*as1a,as1b);
+a2 : line=(a2a,a2b);
+a4 : line=(8*a4a,a4b);
+a5 : line=(4*a5a,a5b);
+
+! Main arc unit without sextupoles
+!-----------------------------
+arc : line=(a0,b1,a0,qf1,as1,qd1,as1,qf2,a0,b1,a0,qd2,-1*(a0,b1,a0,qf1,as1,qd1,as1,qf2,a0,b1,a0));
+
+! Sextupole lines
+!-----------------------------
+a0s1x : line=(a0a,s1x,a0a);
+a0s2x : line=(a0a,s2x,a0a);
+a0s2y : line=(a0a,s2y,a0a);
+as1sy1 : line=(6*as1a,as1b,as1c,s1y,as1c);
+as1sy3 : line=(as1c,s3y,as1c,6*as1a,as1b);
+a2qtf : line=(a2c,qtf,a2c,a2b);
+a4qtd : line=(a4c,qtd,a4c,7*a4a,a4b);
+
+
+! Main arc unit with sextupoles
+!-----------------------------
+chrom_arc : line=(a0,b1,a0,qf1,as1sy1,qd1,as1,qf2,a0s1x,b1,a0s2y,qd2,a0,b1,a0,qf2,as1sy3,qd1,as1,qf1,a0,b1,a0);
+
+! Main straight unit
+!-----------------------------
+straight : line=(m1,qd3,a4qtd,qf4,a2qtf,qd4,a5,inj,a5,qd4,-a2qtf,qf4,-a4qtd,qd3);
+
+! 1 superperiod = arc (with sextupoles) + straight
+!-----------------------------
+sp : line=(chrom_arc,straight);
+
+! Injection straight
+!-----------------------------
+inj_straight : line=(qd3,a4c,qtd,a4c,a4a,a4a,a4a,v1,a4a,h1,a4a,id1,a4a,a4a,a4b,qf4,a2qtf,qd4,a5b,a5a,v2,a5a,h2,a5a,id2,a5a,inj,a5a,id3,a5a,h3,a5a,v3,a5a,a5b,qd4,-a2qtf,qf4,a4b,a4a,a4a,id4,a4a,h4,a4a,v4,a4a,a4a,a4a,a4c,qtd,a4c,qd3);
+                  
+! Injection superperiod = arc (with sextupoles) + injection straight
+!-----------------------------                
+sp_inj : line=(chrom_arc,inj_straight);
+
+! Extraction straight
+!-----------------------------
+ext_straight : line=(qd3,a4c,qtd,a4c,a4a,hext1,a4a,hext2,a4a,hext3,a4a,hext4,a4a,a4a,a4a,a4b,qf4,a2qtf,qd4,a5,sep,-1*(qd3,a4c,qtd,a4c,7*a4a,a4b,qf4,a2qtf,qd4,a5));
+
+! Extraction superperiod = arc (with sextupoles) + extraction straight
+!-----------------------------  
+sp_ext : line=(chrom_arc,ext_straight);
+
+! Full ring = injection sp + sp + extraction sp (3 superperiods)
+!-----------------------------  
+ring : line=(sp_inj,sp,sp_ext);
+
+
+! Add Correctors
+!-----------------------------
+chrom_arc_corr : line=(a0,b1,hm101,hc101,a0,qf1,5*as1a,vm102,vc102,as1a,as1b,as1c,s1y,as1c,qd1,6*as1a,hm102,hc102,as1a,as1b,qf2,a0s1x,b1,a0s2y,qd2,vm103,vc103,a0,b1,hm103,hc103,a0,qf2,as1c,s3y,as1c,5*as1a,vm104,vc104,as1a,as1b,qd1,6*as1a,hm104,hc104,as1a,as1b,qf1,a0,b1,vm105,vc105,a0);
+straight_corr : line=(m1,qd3,a4c,qtd,a4c,6*a4a,hm105,hc105,a4a,a4b,qf4,a2qtf,qd4,minj1,vm107,vc107,a5,inj,3*a5a,vm101,vc101,a5a,a5b,minj2,qd4,-a2qtf,qf4,a4b,hm106,hc106,6*a4a,vm106,vc106,a4a,a4c,qtd,a4c,qd3,m3);
+sp_corr : line=(chrom_arc_corr,straight_corr);
+
+chrom_arc_corr2 : line=(a0,b1,hm201,hc201,a0,qf1,5*as1a,vm202,vc202,as1a,as1b,as1c,s1y,as1c,qd1,6*as1a,hm202,hc202,as1a,as1b,qf2,a0s1x,b1,a0s2y,qd2,vm203,vc203,a0,b1,hm203,hc203,a0,qf2,as1c,s3y,as1c,5*as1a,vm204,vc204,as1a,as1b,qd1,6*as1a,hm204,hc204,as1a,as1b,qf1,a0,b1,vm205,vc205,a0);
+straight_corr2 : line=(m1,qd3,a4c,qtd,a4c,6*a4a,hm205,hc205,a4a,a4b,qf4,a2qtf,qd4,minj1,vm207,vc207,a5b,inj,3*a5a,vm201,vc201,a5a,a5b,minj2,qd4,-a2qtf,qf4,a4b,hm206,hc206,6*a4a,vm206,vc206,a4a,a4c,qtd,a4c,qd3,m3);
+sp_corr2 : line=(chrom_arc_corr2,straight_corr2);
+
+chrom_arc_corr3 : line=(a0,b1,hm301,hc301,a0,qf1,5*as1a,vm302,vc302,as1a,as1b,as1c,s1y,as1c,qd1,6*as1a,hm302,hc302,as1a,as1b,qf2,a0s1x,b1,a0s2y,qd2,vm303,vc303,a0,b1,hm303,hc303,a0,qf2,as1c,s3y,as1c,5*as1a,vm304,vc304,as1a,as1b,qd1,6*as1a,hm304,hc304,as1a,as1b,qf1,a0,b1,vm305,vc305,a0);
+straight_corr3 : line=(m1,qd3,a4c,qtd,a4c,6*a4a,hm305,hc305,a4a,a4b,qf4,a2qtf,qd4,minj1,vm307,vc307,a5,inj,3*a5a,vm301,vc301,a5a,a5b,minj2,qd4,-a2qtf,qf4,a4b,hm306,hc306,6*a4a,vm306,vc306,a4a,a4c,qtd,a4c,qd3,m3);
+sp_corr3 : line=(chrom_arc_corr3,straight_corr3);
+
+ring_corr : line=(sp_corr,sp_corr2,sp_corr3);
+
+ring_corr_ind: line=(a0_0,b1_0,hm101,hc101,a0_1,qf1_0,as1a_0,as1a_1,as1a_2,as1a_3,as1a_4,vm102,vc102,as1a_5,as1b_0,as1c_0,s1y_0,as1c_1,qd1_0,as1a_6,as1a_7,as1a_8,as1a_9,as1a_10,as1a_11,hm102,hc102,as1a_12,as1b_1,qf2_0,a0a_0,s1x_0,a0a_1,b1_1,a0a_2,s2y_0,a0a_3,qd2_0,vm103,vc103,a0_2,b1_2,hm103,hc103,a0_3,qf2_1,as1c_2,s3y_0,as1c_3,as1a_13,as1a_14,as1a_15,as1a_16,as1a_17,vm104,vc104,as1a_18,as1b_2,qd1_1,as1a_19,as1a_20,as1a_21,as1a_22,as1a_23,as1a_24,hm104,hc104,as1a_25,as1b_3,qf1_1,a0_4,b1_3,vm105,vc105,a0_5,m1_0,qd3_0,a4c_0,qtd_0,a4c_1,a4a_0,a4a_1,a4a_2,a4a_3,a4a_4,a4a_5,hm105,hc105,a4a_6,a4b_0,qf4_0,a2c_0,qtf_0,a2c_1,a2b_0,qd4_0,minj1_0,vc107,vm107,a5a_0,a5a_1,a5a_2,a5a_3,a5b_0,inj_0,a5a_4,a5a_5,a5a_6,vm101,vc101,a5a_7,a5b_1,minj2_0,qd4_1,a2b_1,a2c_2,qtf_1,a2c_3,qf4_1,a4b_1,hm106,hc106,a4a_7,a4a_8,a4a_9,a4a_10,a4a_11,a4a_12,vm106,vc106,a4a_13,a4c_2,qtd_1,a4c_3,qd3_1,m3_0,a0_6,b1_4,hm201,hc201,a0_7,qf1_2,as1a_26,as1a_27,as1a_28,as1a_29,as1a_30,vm202,vc202,as1a_31,as1b_4,as1c_4,s1y_1,as1c_5,qd1_2,as1a_32,as1a_33,as1a_34,as1a_35,as1a_36,as1a_37,hm202,hc202,as1a_38,as1b_5,qf2_2,a0a_4,s1x_1,a0a_5,b1_5,a0a_6,s2y_1,a0a_7,qd2_1,vm203,vc203,a0_8,b1_6,hm203,hc203,a0_9,qf2_3,as1c_6,s3y_1,as1c_7,as1a_39,as1a_40,as1a_41,as1a_42,as1a_43,vm204,vc204,as1a_44,as1b_6,qd1_3,as1a_45,as1a_46,as1a_47,as1a_48,as1a_49,as1a_50,hm204,hc204,as1a_51,as1b_7,qf1_3,a0_10,b1_7,vm205,vc205,a0_11,m1_1,qd3_2,a4c_4,qtd_2,a4c_5,a4a_14,a4a_15,a4a_16,a4a_17,a4a_18,a4a_19,hm205,hc205,a4a_20,a4b_2,qf4_2,a2c_4,qtf_2,a2c_5,a2b_2,qd4_2,minj1_1,vc207,vm207,a5a_8,a5a_9,a5a_10,a5a_11,a5b_2,inj_1,a5a_12,a5a_13,a5a_14,vm201,vc201,a5a_15,a5b_3,minj2_1,qd4_3,a2b_3,a2c_6,qtf_3,a2c_7,qf4_3,a4b_3,hm206,hc206,a4a_21,a4a_22,a4a_23,a4a_24,a4a_25,a4a_26,vm206,vc206,a4a_27,a4c_6,qtd_3,a4c_7,qd3_3,m3_1,a0_12,b1_8,hm301,hc301,a0_13,qf1_4,as1a_52,as1a_53,as1a_54,as1a_55,as1a_56,vm302,vc302,as1a_57,as1b_8,as1c_8,s1y_2,as1c_9,qd1_4,as1a_58,as1a_59,as1a_60,as1a_61,as1a_62,as1a_63,hm302,hc302,as1a_64,as1b_9,qf2_4,a0a_8,s1x_2,a0a_9,b1_9,a0a_10,s2y_2,a0a_11,qd2_2,vm303,vc303,a0_14,b1_10,hm303,hc303,a0_15,qf2_5,as1c_10,s3y_2,as1c_11,as1a_65,as1a_66,as1a_67,as1a_68,as1a_69,vm304,vc304,as1a_70,as1b_10,qd1_5,as1a_71,as1a_72,as1a_73,as1a_74,as1a_75,as1a_76,hm304,hc304,as1a_77,as1b_11,qf1_5,a0_16,b1_11,vm305,vc305,a0_17,m1_2,qd3_4,a4c_8,qtd_4,a4c_9,a4a_28,a4a_29,a4a_30,a4a_31,a4a_32,a4a_33,hm305,hc305,a4a_34,a4b_4,qf4_4,a2c_8,qtf_4,a2c_9,a2b_4,qd4_4,minj1_2,vc307,vm307,a5a_16,a5a_17,a5a_18,a5a_19,a5b_4,inj_2,a5a_20,a5a_21,a5a_22,vm301,vc301,a5a_23,a5b_5,minj2_2,qd4_5,a2b_5,a2c_10,qtf_5,a2c_11,qf4_5,a4b_5,hm306,hc306,a4a_35,a4a_36,a4a_37,a4a_38,a4a_39,a4a_40,vm306,vc306,a4a_41,a4c_10,qtd_5,a4c_11,qd3_5,m3_2);
+
+! Not used
+!-----------------------------
+ext_straight_corr : line=(qd3,a4c,qtd,a4c,hext1,a4a,hext2,a4a,hext3,a4a,hext4,a4a,hext5,a4a,hext6,a4a,hext7,a4a,a4b,qf4,a2qtf,qd4,a5,sep,a5,qd4,a2qtf,qf4,a4b,hc306,7*a4a,a4c,qtd,a4c,qd3)
+inj_straight_corr : line=(qd3,a4c,qtd,a4c,a4a,a4a,a4a,v1,a4a,h1,a4a,id1,a4a,a4a,a4b,qf4,a2qtf,qd4,a5b,a5a,v2,a5a,h2,a5a,id2,a5a,inj,a5a,id3,a5a,h3,a5a,v3,a5a,a5b,qd4,-a2qtf,qf4,a4b,a4a,a4a,id4,a4a,h4,a4a,v4,a4a,a4a,a4a,a4c,qtd,a4c,qd3);
+
+chrom_arc_corr_inj : line=(vm201,vc201,a0,b1,hm201,hc201,a0,qf1,5*as1a,vm202,vc202,as1a,as1b,as1c,s1y,as1c,qd1,6*as1a,hm202,hc202,as1a,as1b,qf2,a0s1x,b1,a0s2y,qd2,a0,vm203,vc203,b1,hm203,hc203,a0,qf2,as1c,s3y,as1c,5*as1a,vm204,vc204,as1a,as1b,qd1,6*as1a,hm204,hc204,as1a,as1b,qf1,a0,b1,vm205,vc205,a0);
+chrom_arc_corr_ext : line=(vm301,vc301,a0,b1,hm301,hc301,a0,qf1,5*as1a,vm302,vc302,as1a,as1b,as1c,s1y,as1c,qd1,6*as1a,hm302,hc302,as1a,as1b,qf2,a0s1x,b1,a0s2y,qd2,a0,vm303,vc303,b1,hm203,hc303,a0,qf2,as1c,s3y,as1c,5*as1a,vm304,vc304,as1a,as1b,qd1,6*as1a,hm204,hc304,as1a,as1b,qf1,a0,b1,vm305,vc305,a0);

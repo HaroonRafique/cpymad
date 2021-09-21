@@ -1,0 +1,29 @@
+! main sbends
+!-----------------------------
+bangledeg = 30.0;
+edge=0.0*3.14159/180.;
+blen = 3.4;
+bangle = bangledeg*3.14159/180.;
+b_edge = 0.0;
+bkval = 0.0;
+
+! quadrupoles
+!-----------------------------
+qtfkvar=0.000000;
+qtdkvar=-0.000000;
+
+qf1kvar=5.107288e-01;
+qf2kvar=5.107288e-01;
+qf4kvar=6.021386e-01;
+qd1kvar=-6.651596e-01;
+qd2kvar=-5.889184e-01;
+qd3kvar=-5.889184e-01;
+qd4kvar=-4.625177e-01;
+
+! sextupoles
+!-----------------------------
+s3yk2var  = 0.0;
+s2yk2var  = 0.0;
+s1yk2var  = 0.0;
+s2xk2var  = 0.0;
+s1xk2var  = 0.0;
