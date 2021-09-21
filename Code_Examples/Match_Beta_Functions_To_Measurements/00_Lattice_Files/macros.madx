@@ -1,0 +1,158 @@
+! Twiss Macros
+
+madx_twiss_file_macro($insequence, $filename): macro={
+        select, flag=twiss, clear;
+        select, flag=twiss, column=name, keyword, s, l, mux, muy, betx, alfx, bety, alfy, x, px, y, py, t, pt, dx, dpx, dy, dpy, energy, angle, k0l, k0sl, k1l, k1sl, k2l, k2sl, k3l, k3sl, k4l, k4sl, k5l, k5sl, vkick, hkick, tilt, slot_id, volt, lag, freq, harmon, beta11, beta12, alfa11, alfa12, disp1, disp2, disp3, disp4;
+        set,    format="12.6f";
+        twiss,  sequence=$insequence, file=$filename, save;
+};
+
+! APPLIED ERROR MACROS
+
+distributed_qfn_error(beta_beating): macro={
+  print, text = "/***************************************************";
+  print, text = "  Implementing distributed errors on QFN quadrupoles";
+  print, text = "/***************************************************";
+  Delta_k_new := 0.00015 * beta_beating;
+  EOPTION, ADD=false;
+  SELECT,FLAG=ERROR,CLEAR;
+  SELECT,FLAG=ERROR,PATTERN="QFN*";
+  EFCOMP, DKN:={0,Delta_k_new*tgauss(3),0}; 
+  value, Delta_k_new;
+};
+
+QDN78_error(beta_beating): macro={
+  print, text = "/***************************************************";
+  print, text = "  Implementing QDN78 error";
+  print, text = "/***************************************************";
+  !beta_0 = 22.35981157; !value @ QDN72
+  L_Q = 0.12;
+  beta_0 = 21.45106468; !value @ QDN78
+  value, beta_0;
+
+  Delta_k_unit = ( (2 * sin(twopi*tune_y) ) / (beta_0 * L_Q) );
+  value, Delta_k_unit;
+
+  !Delta_k := 1.05 * ( (2 * sin(twopi*(6+tune_y)) ) / (beta_0) );
+  !Delta_k := beta_beating * 0.013781475; !For specific MD4224 optics
+  !Delta_k_unit_old := 0.000510425; !For specific MD4224 optics
+
+  Delta_k_new := beta_beating * -Delta_k_unit;
+  value, Delta_k_new;
+
+  EOPTION, ADD=false;
+  SELECT,FLAG=ERROR,CLEAR;
+  SELECT,FLAG=ERROR,PATTERN=PR.QDN78;
+  EFCOMP, DKN:={0,Delta_k_new,0}; 
+};
+
+
+! INJECTION BUMP
+
+Apply_Injection_Bump(): macro={
+
+        xmax := table(summ, xcomax);
+        Qx := table(summ, Q1);
+        Qy := table(summ, Q2);
+        
+        BSW40 := BSW40_K0;
+        BSW42 := BSW42_K0;
+        BSW43 := BSW43_K0;
+        BSW44 := BSW44_K0;
+        BSStren : = BSS;
+
+        !BUMP_40 := 28.E-6/(BRHO); != 3.919331935e-06
+
+        K2_S40 := BSStren*(BSW40_K0/BSW42_K0);
+        K2_S42 := BSStren*(BSW42_K0/BSW42_K0);
+        K2_S43 := BSStren*(BSW43_K0/BSW42_K0);
+        K2_S44 := BSStren*(BSW44_K0/BSW42_K0);
+
+        create, table=TBSEXT40, column=BSEXT_t, BSW40, K2_S40;
+        create, table=TBSEXT42, column=BSEXT_t, BSW42, K2_S42;
+        create, table=TBSEXT43, column=BSEXT_t, BSW43, K2_S43;
+        create, table=TBSEXT44, column=BSEXT_t, BSW44, K2_S44;
+
+        /***********************************************************************
+         * Read input table
+         **********************************************************************/
+
+        readtable, file='MADX_Input/BSEXT_Bump_SBEND_Half.tfs';
+        nrows = table(BSWTABLE, tablelength);
+        value, nrows;
+        row = 0;
+
+        /***********************************************************************
+         * Iterate over steps from input table
+         **********************************************************************/
+        EOPTION, ADD=false;        
+        while(row<nrows){ !while(row<1)
+                row = row + 1;
+                iteration = 0;
+                value, iteration;
+
+                SETVARS, TABLE=BSWTABLE, ROW=row;
+
+                option, warn;
+                option, -info;
+
+                ! Set kicker strengths as errors (with sextupole component)
+                ! N.B. if 'use' command is used after these, errors will be erased
+
+                SELECT,FLAG=ERROR,CLEAR;
+                SELECT,FLAG=ERROR,PATTERN=PI.BSW40;
+                EFCOMP, DKN:={BSW40,0,K2_S40}; 
+
+                SELECT,FLAG=ERROR,CLEAR;
+                SELECT,FLAG=ERROR,PATTERN=PI.BSW42;
+                EFCOMP, DKN:={BSW42,0,K2_S42}; 
+
+                SELECT,FLAG=ERROR,CLEAR;
+                SELECT,FLAG=ERROR,PATTERN=PI.BSW43;
+                EFCOMP, DKN:={BSW43,0,K2_S43}; 
+
+                SELECT,FLAG=ERROR,CLEAR;
+                SELECT,FLAG=ERROR,PATTERN=PI.BSW44;
+                EFCOMP, DKN:={BSW44,0,K2_S44}; 
+
+                exec, ptc_twiss_tune_macro_no_split_n($row);
+                exec, madx_twiss_file_macro($row);
+                
+                fill, table=mytable;
+                fill, table=TBSEXT40;
+                fill, table=TBSEXT42;
+                fill, table=TBSEXT43;
+                fill, table=TBSEXT44;
+        }
+
+        !SELECT, FLAG = ERROR, FULL;
+        !ESAVE, FILE = errors.dat;
+
+        /***********************************************************************
+         * Create plot of closed orbit and tunes
+         **********************************************************************/
+
+        plot, table=mytable, haxis=BSEXT_t, vaxis=xmax;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=xcomin0;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=xcomax0;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=Qx0;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=Qy0;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=Qx;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=Qy;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=K2_S40, K2_S42, K2_S43;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=K2_S44;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=BSStren;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=BSW40, BSW44;
+        plot, table=mytable, haxis=BSEXT_t, vaxis=BSW43, BSW42, BSW40;
+
+        /***********************************************************************
+         * Write tables for magnet ramp
+         **********************************************************************/
+         
+        write, table=mytable, file='BSEXT_Out.tfs';
+        write, table=TBSEXT40, file='BSEXT40.tfs';
+        write, table=TBSEXT42, file='BSEXT42.tfs';
+        write, table=TBSEXT43, file='BSEXT43.tfs';
+        write, table=TBSEXT44, file='BSEXT44.tfs';
+
+}

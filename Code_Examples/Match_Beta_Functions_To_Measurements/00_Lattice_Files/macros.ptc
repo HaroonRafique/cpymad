@@ -1,0 +1,102 @@
+! PTC MACROS
+
+ptc_twiss_macro(order, dp, slice_flag): macro = {
+  select, flag=ptc_twiss, column=name,keyword,s,l,mu1,mu2,beta11,alfa11,beta22,alfa22,x,px,y,py,t,pt,disp1,disp2,disp3,disp4,energy,angle,K0L,K0SL,K1L,K1SL,K2L,K2SL,K3L,K3SL,K4L,K4SL,K5L,K5SL,vkick,hkick,tilt,slot_id,volt,lag,freq,harmon,gamma11,gamma22;
+  ptc_create_universe;
+  ptc_create_layout, time=false, model=2, exact=true, method=6, nst=3;
+  IF (slice_flag == 1){
+    ptc_twiss, closed_orbit, icase=56, no=order, deltap=dp, table=ptc_twiss, summary_table=ptc_twiss_summary, slice_magnets=true;
+  }
+  ELSE{
+    ptc_twiss, closed_orbit, icase=56, no=order, deltap=dp, table=ptc_twiss, summary_table=ptc_twiss_summary, normal;
+  }
+  ptc_end;
+};
+
+! Override existing macro in macros file due to bug when using MAD-X 5.02
+ptc_twiss_macro(order): macro = {
+	select, flag=ptc_twiss, column=name,keyword,s,l,mu1,mu2,beta11,alfa11,beta22,alfa22,x,px,y,py,t,pt,disp1,disp2,disp3,disp4,energy,angle,K0L,K0SL,K1L,K1SL,K2L,K2SL,K3L,K3SL,K4L,K4SL,K5L,K5SL,vkick,hkick,tilt,slot_id,volt,lag,freq,harmon,gamma11,gamma22;
+	ptc_create_universe;
+	ptc_create_layout, time=false, model=2, exact=true, method=6, nst=3;
+	ptc_twiss, closed_orbit, icase=56, no=order, table=ptc_twiss, summary_table=ptc_twiss_summary;  
+	ptc_end;
+};
+
+ptc_twiss_macro_sliced(order): macro = {
+	select, flag=ptc_twiss, column=name,keyword,s,l,mu1,mu2,beta11,alfa11,beta22,alfa22,x,px,y,py,t,pt,disp1,disp2,disp3,disp4,energy,angle,K0L,K0SL,K1L,K1SL,K2L,K2SL,K3L,K3SL,K4L,K4SL,K5L,K5SL,vkick,hkick,tilt,slot_id,volt,lag,freq,harmon,gamma11,gamma22;
+	ptc_create_universe;
+	ptc_create_layout, time=false, model=2, exact=true, method=6, nst=3;
+	ptc_twiss, closed_orbit, icase=56, no=order, table=ptc_twiss, summary_table=ptc_twiss_summary, slice_magnets=true;  
+	ptc_end;
+};
+
+write_ptc_twiss(filename) : macro = {
+  write, table=ptc_twiss, file=filename;
+};
+
+ptc_twiss_tune_macro_no_split_n(nnn): macro={
+        select, flag=ptc_twiss, column=name,keyword,s,l,mu1,mu2,beta11,alfa11,beta22,alfa22,x,px,y,py,t,pt,disp1,disp2,disp3,disp4,energy,angle,K0L,K0SL,K1L,K1SL,K2L,K2SL,K3L,K3SL,K4L,K4SL,K5L,K5SL,vkick,hkick,tilt,slot_id,volt,lag,freq,harmon,gamma11,gamma22;
+        ptc_create_universe;
+        ptc_create_layout, time=true, model=2, exact=true, method=6, nst=3;
+        ptc_twiss, no=map_order, closed_orbit, table = ptc_twiss, file = nnn.ptc, icase=56, summary_table=ptc_twiss_summary;
+        qx0=table(ptc_twiss_summary,q1);
+        qy0=table(ptc_twiss_summary,q2);
+        xcomax0=table(ptc_twiss_summary,xcomax);
+        xcomin0=table(ptc_twiss_summary,xcomin);
+        value, qx0, qy0;
+        ptc_end;
+};
+
+
+! MATCHING MACROS
+
+match_Tunes(PFW_flag, QQx, QQy): macro={
+	IF(PFW_flag == 0){
+	print, text = "/***************************************************";
+	print, text = "  Matching Tune using Low Energy Quads";
+	print, text = "/***************************************************";
+	match, use_macro;
+		vary, name = kf, step=1.0E-6 ;
+		vary, name = kd, step=1.0E-6 ;
+		use_macro, name = ptc_twiss_macro(2);
+		constraint, expr = table(ptc_twiss_summary,q1)  = QQx;
+		constraint, expr = table(ptc_twiss_summary,q2)  = QQy;
+	jacobian,calls=50000,bisec=3;
+	ENDMATCH;
+	}
+	ELSEIF(PFW_flag == 1){
+	print, text = "/***************************************************";
+	print, text = "  Matching Tune using Pole Face Windings";
+	print, text = "/***************************************************";
+	match, use_macro;
+		vary, name = pfwk1_f;
+		vary, name = pfwk1_d;
+		use_macro, name = ptc_twiss_macro(2);
+		constraint, expr = table(ptc_twiss_summary,q1)  = QQx;
+		constraint, expr = table(ptc_twiss_summary,q2)  = QQy;
+	jacobian,calls=50000,bisec=3;
+	ENDMATCH;
+	}
+	value, kf, kd, pfwk1_f, pfwk1_d;
+};
+
+match_Chroma_PFW(QQxp, QQyp, QQxp2, QQyp2): macro={
+	print, text = "/***************************************************";
+	print, text = "  Matching Chromaticity using Pole Face Windings";
+	print, text = "/***************************************************";
+	use, sequence=PS;
+	match, use_macro;
+		vary, name = pfwk2_f;
+		vary, name = pfwk2_d;
+		vary, name = pfwk3_f;
+		vary, name = pfwk3_d;
+        use_macro, name = ptc_twiss_macro(2);
+		constraint, expr = table(ptc_twiss_summary,dq1) = QQxp;
+		constraint, expr = table(ptc_twiss_summary,dq2) = QQyp;
+		! These require the `normal' ptc_twiss flag which doesn't seem to work with MAD-X 5.02
+        !constraint, expr = table(nonlin,value,5)  = QQxp2;
+        !constraint, expr = table(nonlin,value,10) = QQyp2;
+	jacobian,calls=50000,bisec=3;
+	ENDMATCH;
+	value, pfwk2_f, pfwk2_d, pfwk3_f, pfwk3_d;
+};

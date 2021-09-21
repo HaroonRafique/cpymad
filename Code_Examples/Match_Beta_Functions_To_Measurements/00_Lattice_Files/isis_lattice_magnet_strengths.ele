@@ -1,0 +1,131 @@
+//lat3ud file in madx format
+
+//basic lattice below.
+
+kqtd = .00610063;    // nominal numbers for 4.31 and 3.83 lattice
+kqtf = -.01155444;
+
+! Amplitude and Harmonic for QTD
+a1:=0.000;
+b1:=0.000;
+hn1:=7;
+
+! Amplitude and Harmonic for QTF
+a2:=0.000;
+b2:=0.000;
+hn2:=8;
+
+HER0qtd:=(a1*cos(hn1*(0/10)*2*PI))+(b1*sin(hn1*(0/10)*2*PI));
+HER1qtd:=(a1*cos(hn1*(1/10)*2*PI))+(b1*sin(hn1*(1/10)*2*PI));
+HER2qtd:=(a1*cos(hn1*(2/10)*2*PI))+(b1*sin(hn1*(2/10)*2*PI));
+HER3qtd:=(a1*cos(hn1*(3/10)*2*PI))+(b1*sin(hn1*(3/10)*2*PI));
+HER4qtd:=(a1*cos(hn1*(4/10)*2*PI))+(b1*sin(hn1*(4/10)*2*PI));
+HER5qtd:=(a1*cos(hn1*(5/10)*2*PI))+(b1*sin(hn1*(5/10)*2*PI));
+HER6qtd:=(a1*cos(hn1*(6/10)*2*PI))+(b1*sin(hn1*(6/10)*2*PI));
+HER7qtd:=(a1*cos(hn1*(7/10)*2*PI))+(b1*sin(hn1*(7/10)*2*PI));
+HER8qtd:=(a1*cos(hn1*(8/10)*2*PI))+(b1*sin(hn1*(8/10)*2*PI));
+HER9qtd:=(a1*cos(hn1*(9/10)*2*PI))+(b1*sin(hn1*(9/10)*2*PI));
+
+HER0qtf:=(a2*cos(hn2*(0/10)*2*PI))+(b2*sin(hn2*(0/10)*2*PI));
+HER1qtf:=(a2*cos(hn2*(1/10)*2*PI))+(b2*sin(hn2*(1/10)*2*PI));
+HER2qtf:=(a2*cos(hn2*(2/10)*2*PI))+(b2*sin(hn2*(2/10)*2*PI));
+HER3qtf:=(a2*cos(hn2*(3/10)*2*PI))+(b2*sin(hn2*(3/10)*2*PI));
+HER4qtf:=(a2*cos(hn2*(4/10)*2*PI))+(b2*sin(hn2*(4/10)*2*PI));
+HER5qtf:=(a2*cos(hn2*(5/10)*2*PI))+(b2*sin(hn2*(5/10)*2*PI));
+HER6qtf:=(a2*cos(hn2*(6/10)*2*PI))+(b2*sin(hn2*(6/10)*2*PI));
+HER7qtf:=(a2*cos(hn2*(7/10)*2*PI))+(b2*sin(hn2*(7/10)*2*PI));
+HER8qtf:=(a2*cos(hn2*(8/10)*2*PI))+(b2*sin(hn2*(8/10)*2*PI));
+HER9qtf:=(a2*cos(hn2*(9/10)*2*PI))+(b2*sin(hn2*(9/10)*2*PI));
+
+// -----------------------------------------------------------------------------
+
+dipfr8  : sbend , l=0.16, k1=0.01101772 , angle=.0070260;
+dipfr9  : sbend , l=0.2, k1=-0.00081196 , angle=.0011260;
+dipfr10 : sbend , l=0.03, k1=-0.00106696 , angle=.0000970;
+
+s1      : drift , l=1.31;
+s2      : drift , l=1.2394;
+
+qdfr1   : quadrupole  , l=0.05275    , k1=-.07954129; 
+qdfr2   : quadrupole  , l=0.05275    , k1=-.23862467;
+qdfr3   : quadrupole  , l=0.05275    , k1=-.39770806;
+qdfr4   : quadrupole  , l=0.05275    , k1=-.55679063;
+qd      : quadrupole  , l=0.51920    , k1=-.63633192;
+qdfr5   : quadrupole  , l=0.05275    , k1=-.55679063;
+qdfr6   : quadrupole  , l=0.05275    , k1=-.39770806;
+qdfr7   : quadrupole  , l=0.05275    , k1=-.23862467;
+qdfr8   : quadrupole  , l=0.05275    , k1=-.07954129;
+                  
+s3      : drift , l=0.09765;   
+
+qtd     : quadrupole  , l=0.307 , k1=kqtd;
+
+s4      : drift , l=0.09765;
+
+qffr1   : quadrupole  , l=0.05275    , k1=.07957934; 
+qffr2   : quadrupole  , l=0.05275    , k1=.23873962; 
+qffr3   : quadrupole  , l=0.05275    , k1=.39789910;
+qffr4   : quadrupole  , l=0.05275    , k1=.55705778; 
+qf      : quadrupole  , l=0.50420    , k1=.63663711;
+qffr5   : quadrupole  , l=0.05275    , k1=.55705778;
+qffr6   : quadrupole  , l=0.05275    , k1=.39789910; 
+qffr7   : quadrupole  , l=0.05275    , k1=.23873962; 
+qffr8   : quadrupole  , l=0.05275    , k1=.07957934; 
+
+s5      : drift , l=0.0967;
+
+qtf     : quadrupole  , l=0.307 , k1=qtf;
+
+s6      : drift , l=1.0;
+s7      : drift , l=1.0;
+s8      : drift , l=1.0;
+s9      : drift , l=1.0;
+s10     : drift , l=1.2445;
+
+qdsfr1  : quadrupole  , l=.03875     , k1=-.09091520;
+qdsfr2  : quadrupole  , l=.03875     , k1=-.27274479;
+qdsfr3  : quadrupole  , l=.03875     , k1=-.45457519;
+qdsfr4  : quadrupole  , l=.03875     , k1=-.63640478;
+qds     : quadrupole  , l=.2474      , k1=-.72731997;
+qdsfr5  : quadrupole  , l=.03875     , k1=-.63640478;
+qdsfr6  : quadrupole  , l=.03875     , k1=-.45457519;
+qdsfr7  : quadrupole  , l=.03875     , k1=-.27274479;
+qdsfr8  : quadrupole  , l=.03875     , k1=-.09091520;
+
+s11     : drift , l=.031582;
+
+dipfr1  : sbend , l=0.03, k1=-0.00106696 , angle=0.000097;
+dipfr2  : sbend , l=0.20, k1=-0.00081196 , angle=.0011260;
+dipfr3  : sbend , l=0.16, k1=0.01101772 , angle=.0070260;
+dipfr4  : sbend , l=0.04, k1=0.01101772 , angle=.0017570;
+dipfr5  : sbend , l=0.2 , k1=0.07106712 , angle=.0242660;
+dip1    : sbend , l=0.06, k1=0.06782332 , angle=.0085680;
+dip2    : sbend , l=1.0 , k1=0.06782332 , angle=.1428000;
+dip3    : sbend , l=1.0 , k1=0.06782332 , angle=.1428000;
+dip4    : sbend , l=1.0 , k1=0.06782332 , angle=.1428000;
+dip5    : sbend , l=0.8 , k1=0.06782332 , angle=.11428000;
+dip6    : sbend , l=0.06, k1=0.06782332 , angle=.0085680;
+dipfr6  : sbend , l=0.2 , k1=0.07106712 , angle=.0242660;
+dipfr7  : sbend , l=0.04, k1=0.01101772 , angle=.0017570;
+
+r0qtf : qtf , k1:=kqtf+HER0qtf; 
+r1qtf : qtf , k1:=kqtf+HER1qtf; 
+r2qtf : qtf , k1:=kqtf+HER2qtf; 
+r3qtf : qtf , k1:=kqtf+HER3qtf; 
+r4qtf : qtf , k1:=kqtf+HER4qtf; 
+r5qtf : qtf , k1:=kqtf+HER5qtf; 
+r6qtf : qtf , k1:=kqtf+HER6qtf; 
+r7qtf : qtf , k1:=kqtf+HER7qtf; 
+r8qtf : qtf , k1:=kqtf+HER8qtf; 
+r9qtf : qtf , k1:=kqtf+HER9qtf; 
+
+r0qtd : qtd , k1:=kqtd+HER0qtd; 
+r1qtd : qtd , k1:=kqtd+HER1qtd; 
+r2qtd : qtd , k1:=kqtd+HER2qtd; 
+r3qtd : qtd , k1:=kqtd+HER3qtd; 
+r4qtd : qtd , k1:=kqtd+HER4qtd; 
+r5qtd : qtd , k1:=kqtd+HER5qtd; 
+r6qtd : qtd , k1:=kqtd+HER6qtd; 
+r7qtd : qtd , k1:=kqtd+HER7qtd; 
+r8qtd : qtd , k1:=kqtd+HER8qtd; 
+r9qtd : qtd , k1:=kqtd+HER9qtd; 
