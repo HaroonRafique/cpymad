@@ -13,3 +13,4 @@ A collection of helpful functions that can be used with cpymad: the Cython bindi
 - **COD_and_correction**: Implement COD using random Gaussian errors, correct using monitors/correctors
 - **Match_Beta_Functions_To_Measurements**: Match a model lattice optics functions to measurements
 - **Simple_Tracking**: Track a bunch of particles through a synchrotron
+- **Tune_From_Tracking**: Track single particles through a synchrotron and use a fast Fourier transform to ascertain particle tunes
